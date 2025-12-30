@@ -1,3 +1,6 @@
+
+
+````md
 # Mini User Management System
 
 ## 📌 Project Overview
@@ -5,10 +8,9 @@
 The **Mini User Management System** is a full-stack web application that provides **secure user authentication**, **role-based access control (RBAC)**, and **basic admin management features**.
 
 The application allows:
-
-* Users to register, log in, and access their personal dashboard and profile
-* Admins to manage users by viewing all registered accounts and deactivating users
-* Secure access using JWT-based authentication
+- Users to register, log in, and access their personal dashboard and profile
+- Admins to manage users by viewing all registered accounts and deactivating users
+- Secure access using JWT-based authentication
 
 This project was developed as part of a **Backend Developer / Intern Assessment** to demonstrate backend fundamentals, API security, database integration, and frontend–backend communication.
 
@@ -16,39 +18,39 @@ This project was developed as part of a **Backend Developer / Intern Assessment*
 
 ## 🌐 Live Application
 
-* **Frontend (Vercel):**
-  👉 [https://user-management-system-deployed-44ge-40h0i3bwr.vercel.app](https://user-management-system-deployed-44ge-40h0i3bwr.vercel.app)
+- **Frontend (Vercel):**  
+  👉 https://user-management-system-deployed-44ge-40h0i3bwr.vercel.app
 
-* **Backend API (Render):**
-  👉 [https://user-management-system-backend-cijx.onrender.com](https://user-management-system-backend-cijx.onrender.com)
+- **Backend API (Render):**  
+  👉 https://user-management-system-backend-cijx.onrender.com
+
+- **Postman API Documentation (Public):**  
+  👉 https://documenter.getpostman.com/view/41321451/2sBXVbJEW9
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Backend
-
-* **Node.js** – runtime environment
-* **Express.js** – REST API framework
-* **PostgreSQL (Neon)** – cloud database
-* **JWT (JSON Web Tokens)** – authentication & authorization
-* **bcrypt** – password hashing
-* **pg** – PostgreSQL client
+- **Node.js** – runtime environment
+- **Express.js** – REST API framework
+- **PostgreSQL (Neon)** – cloud database
+- **JWT (JSON Web Tokens)** – authentication & authorization
+- **bcrypt** – password hashing
+- **pg** – PostgreSQL client
 
 ### Frontend
-
-* **React** – UI library
-* **React Router DOM** – client-side routing
-* **Axios** – API communication
-* **jwt-decode** – decoding JWT payload
+- **React** – UI library
+- **React Router DOM** – client-side routing
+- **Axios** – API communication
+- **jwt-decode** – decoding JWT payload
 
 ### Tools & Platforms
-
-* **Postman** – API testing
-* **Render** – backend deployment
-* **Vercel** – frontend deployment
-* **Neon** – managed PostgreSQL hosting
-* **Git & GitHub** – version control
+- **Postman** – API testing & documentation
+- **Render** – backend deployment
+- **Vercel** – frontend deployment
+- **Neon** – managed PostgreSQL hosting
+- **Git & GitHub** – version control
 
 ---
 
@@ -59,7 +61,7 @@ This project was developed as part of a **Backend Developer / Intern Assessment*
 ```bash
 cd backend
 npm install
-```
+````
 
 Create a `.env` file inside the **backend** directory:
 
@@ -167,154 +169,31 @@ https://user-management-system-deployed-44ge-40h0i3bwr.vercel.app
 
 ## 📑 API Documentation
 
-### 🔐 Authentication APIs
+Complete API documentation with request/response examples is available via Postman:
 
-#### Signup
+👉 **[https://documenter.getpostman.com/view/41321451/2sBXVbJEW9](https://documenter.getpostman.com/view/41321451/2sBXVbJEW9)**
 
-**POST** `/auth/signup`
+### Available Endpoints
 
-Request:
+#### Authentication
 
-```json
-{
-  "fullName": "John Doe",
-  "email": "john@example.com",
-  "password": "Password@123"
-}
-```
+* `POST /auth/signup` – Register new user
+* `POST /auth/login` – Login user
 
-Response:
+#### User
 
-```json
-{
-  "token": "jwt_token_here",
-  "user": {
-    "id": "uuid",
-    "email": "john@example.com",
-    "role": "user"
-  }
-}
-```
+* `GET /users/me` – Get current logged-in user
 
----
+#### Admin (Protected)
 
-#### Login
+* `GET /admin/users` – Get all users
+* `PATCH /admin/users/:id/deactivate` – Deactivate a user
 
-**POST** `/auth/login`
-
-Request:
-
-```json
-{
-  "email": "john@example.com",
-  "password": "Password@123"
-}
-```
-
-Response:
-
-```json
-{
-  "token": "jwt_token_here",
-  "user": {
-    "id": "uuid",
-    "email": "john@example.com",
-    "role": "user"
-  }
-}
-```
-
----
-
-#### Get Current User
-
-**GET** `/users/me`
-
-Headers:
+All protected routes require:
 
 ```
 Authorization: Bearer <JWT_TOKEN>
 ```
-
-Response:
-
-```json
-{
-  "id": "uuid",
-  "email": "john@example.com",
-  "role": "user"
-}
-```
-
----
-
-### 🛡️ Admin APIs (Protected)
-
-#### Get All Users
-
-**GET** `/admin/users`
-
-Headers:
-
-```
-Authorization: Bearer <ADMIN_JWT_TOKEN>
-```
-
-Response:
-
-```json
-[
-  {
-    "id": "uuid",
-    "email": "user@example.com",
-    "role": "user",
-    "status": "active"
-  }
-]
-```
-
----
-
-#### Deactivate User
-
-**PATCH** `/admin/users/:id/deactivate`
-
-Headers:
-
-```
-Authorization: Bearer <ADMIN_JWT_TOKEN>
-```
-
-Response:
-
-```json
-{
-  "message": "User deactivated successfully"
-}
-```
-
----
-
-## 📮 Postman Collection
-
-A Postman collection is included for easy API testing.
-
-**Location:**
-
-```
-/postman/User-Management-System.postman_collection.json
-```
-
-**How to use:**
-
-1. Open Postman
-2. Click **Import**
-3. Select the collection JSON file from the `/postman` folder
-4. Set environment variable:
-
-   * `baseUrl` → Backend API URL
-5. Login request automatically stores the JWT token
-6. Use protected user and admin APIs directly
 
 ---
 
