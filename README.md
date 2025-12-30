@@ -3,102 +3,53 @@
 
 ## 📌 Project Overview
 
-The **Mini User Management System** is a full-stack web application that provides secure user authentication, role-based access control (RBAC), and basic user lifecycle management.
+The **Mini User Management System** is a full-stack web application that provides **secure user authentication**, **role-based access control (RBAC)**, and **basic admin management features**.
 
-The system supports two roles:
-- **User** – can register, log in, view dashboard & profile
-- **Admin** – can view all users and manage their access
+The application allows:
+- Users to register, log in, and access their personal dashboard and profile
+- Admins to manage users by viewing all registered accounts and deactivating users
+- Secure access using JWT-based authentication
 
-This project was built as part of a **Backend Developer / Intern Assessment** to demonstrate:
-- Authentication flows
-- Secure API design
-- Role-based authorization
-- Clean backend architecture
-- Frontend & backend integration
+This project was developed as part of a **Backend Developer / Intern Assessment** to demonstrate backend fundamentals, API security, database integration, and frontend–backend communication.
+
+---
+
+## 🌐 Live Application
+
+- **Frontend (Vercel):**  
+  👉 https://user-management-system-deployed-44ge-40h0i3bwr.vercel.app
+
+- **Backend API (Render):**  
+  👉 https://user-management-system-backend-cijx.onrender.com
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Backend
-- **Node.js**
-- **Express.js**
-- **PostgreSQL**
-- **JWT (JSON Web Tokens)** – authentication
+- **Node.js** – runtime environment
+- **Express.js** – REST API framework
+- **PostgreSQL (Neon)** – cloud database
+- **JWT (JSON Web Tokens)** – authentication & authorization
 - **bcrypt** – password hashing
-- **Jest** – backend API testing
+- **pg** – PostgreSQL client
 
 ### Frontend
-- **React**
-- **React Router DOM**
-- **Axios**
+- **React** – UI library
+- **React Router DOM** – client-side routing
+- **Axios** – API communication
+- **jwt-decode** – decoding JWT payload
+
+### Tools & Platforms
+- **Postman** – API testing
+- **Render** – backend deployment
+- **Vercel** – frontend deployment
+- **Neon** – managed PostgreSQL hosting
+- **Git & GitHub** – version control
 
 ---
 
-## ✨ Features
-
-### 👤 User Features
-- User signup with validation
-- Secure login using JWT
-- Dashboard view
-- Profile page with account details
-- Logout functionality
-
-### 🛡️ Admin Features
-- Admin-only dashboard
-- View all registered users
-- Deactivate user accounts
-- Role-based protected routes
-
-### 🔐 Security Features
-- Password hashing using bcrypt
-- JWT-based authentication
-- Role-based access control (RBAC)
-- Protected backend routes
-- Proper HTTP status codes (`401`, `403`, `409`)
-- Environment variables for secrets
-
----
-
-## 📂 Project Structure
-
-```
-
-Mini-User-Management-System/
-│
-├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── routes/
-│   │   ├── middleware/
-│   │   ├── services/
-│   │   ├── config/
-│   │   ├── utils/
-│   │   ├── app.js
-│   │   └── server.js
-│   ├── tests/
-│   ├── .env
-│   ├── package.json
-│   └── package-lock.json
-│
-├── frontend/
-│   ├── src/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   ├── services/
-│   │   ├── App.js
-│   │   ├── index.js
-│   │   └── App.css
-│   ├── package.json
-│   └── package-lock.json
-│
-└── README.md
-
-````
-
----
-
-## ⚙️ Setup Instructions
+## ⚙️ Setup Instructions (Local Development)
 
 ### 1️⃣ Backend Setup
 
@@ -107,12 +58,12 @@ cd backend
 npm install
 ````
 
-Create a `.env` file inside the **backend** folder:
+Create a `.env` file inside the **backend** directory:
 
 ```env
 PORT=5000
-DATABASE_URL=your_postgres_connection_string
-JWT_SECRET=your_jwt_secret
+DATABASE_URL=postgresql_connection_string
+JWT_SECRET=your_secret_key
 ```
 
 Start the backend server:
@@ -121,7 +72,7 @@ Start the backend server:
 npm run dev
 ```
 
-Backend will run at:
+Backend runs at:
 
 ```
 http://localhost:5000
@@ -137,7 +88,13 @@ npm install
 npm start
 ```
 
-Frontend will run at:
+Create a `.env` file inside the **frontend** directory:
+
+```env
+REACT_APP_API_URL=http://localhost:5000
+```
+
+Frontend runs at:
 
 ```
 http://localhost:3000
@@ -145,36 +102,202 @@ http://localhost:3000
 
 ---
 
-## 🔐 API Endpoints
+## 🔐 Environment Variables
 
-### Authentication Routes
+### Backend (`backend/.env`)
 
-| Method | Endpoint       | Description                |
-| ------ | -------------- | -------------------------- |
-| POST   | `/auth/signup` | Register a new user        |
-| POST   | `/auth/login`  | Login user                 |
-| GET    | `/users/me`    | Get current logged-in user |
+| Variable     | Description                        |
+| ------------ | ---------------------------------- |
+| PORT         | Port on which backend runs         |
+| DATABASE_URL | PostgreSQL connection string       |
+| JWT_SECRET   | Secret key used to sign JWT tokens |
 
-### Admin Routes (Admin Only)
+### Frontend (`frontend/.env`)
 
-| Method | Endpoint                      | Description       |
-| ------ | ----------------------------- | ----------------- |
-| GET    | `/admin/users`                | Get all users     |
-| PATCH  | `/admin/users/:id/deactivate` | Deactivate a user |
+| Variable          | Description          |
+| ----------------- | -------------------- |
+| REACT_APP_API_URL | Backend API base URL |
 
 ---
 
-## 🧪 Testing
+## 🚀 Deployment Instructions
 
-Backend API tests are written using **Jest**.
+### Backend Deployment (Render)
 
-To run tests:
+1. Create a **Web Service** on Render
+2. Connect the GitHub repository
+3. Set **Root Directory** to `backend`
+4. Configure:
 
-```bash
-cd backend
-npm test
+   * Build Command: `npm install`
+   * Start Command: `node src/server.js`
+5. Add environment variables in Render dashboard
+6. Deploy the service
+
+Backend URL:
+
+```
+https://user-management-system-backend-cijx.onrender.com
 ```
 
-✔ All authentication, authorization, and admin access test cases pass successfully.
+---
+
+### Frontend Deployment (Vercel)
+
+1. Import the GitHub repository into Vercel
+2. Set **Root Directory** to `frontend`
+3. Add environment variable:
+
+```
+REACT_APP_API_URL=https://user-management-system-backend-cijx.onrender.com
+```
+
+4. Deploy
+
+Frontend URL:
+
+```
+https://user-management-system-deployed-44ge-40h0i3bwr.vercel.app
+```
 
 ---
+
+## 📑 API Documentation
+
+### 🔐 Authentication APIs
+
+#### Signup
+
+**POST** `/auth/signup`
+
+Request:
+
+```json
+{
+  "fullName": "John Doe",
+  "email": "john@example.com",
+  "password": "Password@123"
+}
+```
+
+Response:
+
+```json
+{
+  "token": "jwt_token_here",
+  "user": {
+    "id": "uuid",
+    "email": "john@example.com",
+    "role": "user"
+  }
+}
+```
+
+---
+
+#### Login
+
+**POST** `/auth/login`
+
+Request:
+
+```json
+{
+  "email": "john@example.com",
+  "password": "Password@123"
+}
+```
+
+Response:
+
+```json
+{
+  "token": "jwt_token_here",
+  "user": {
+    "id": "uuid",
+    "email": "john@example.com",
+    "role": "user"
+  }
+}
+```
+
+---
+
+#### Get Current User
+
+**GET** `/users/me`
+
+Headers:
+
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+
+Response:
+
+```json
+{
+  "id": "uuid",
+  "email": "john@example.com",
+  "role": "user"
+}
+```
+
+---
+
+### 🛡️ Admin APIs (Protected)
+
+#### Get All Users
+
+**GET** `/admin/users`
+
+Headers:
+
+```
+Authorization: Bearer <ADMIN_JWT_TOKEN>
+```
+
+Response:
+
+```json
+[
+  {
+    "id": "uuid",
+    "email": "user@example.com",
+    "role": "user",
+    "status": "active"
+  }
+]
+```
+
+---
+
+#### Deactivate User
+
+**PATCH** `/admin/users/:id/deactivate`
+
+Headers:
+
+```
+Authorization: Bearer <ADMIN_JWT_TOKEN>
+```
+
+Response:
+
+```json
+{
+  "message": "User deactivated successfully"
+}
+```
+
+---
+
+## 👤 Admin Credentials (Demo)
+
+```
+Email: test@example.com
+Password: test@123
+Role: admin
+```
+
+````
