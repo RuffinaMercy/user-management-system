@@ -1,4 +1,3 @@
-
 # Mini User Management System
 
 ## 📌 Project Overview
@@ -6,9 +5,10 @@
 The **Mini User Management System** is a full-stack web application that provides **secure user authentication**, **role-based access control (RBAC)**, and **basic admin management features**.
 
 The application allows:
-- Users to register, log in, and access their personal dashboard and profile
-- Admins to manage users by viewing all registered accounts and deactivating users
-- Secure access using JWT-based authentication
+
+* Users to register, log in, and access their personal dashboard and profile
+* Admins to manage users by viewing all registered accounts and deactivating users
+* Secure access using JWT-based authentication
 
 This project was developed as part of a **Backend Developer / Intern Assessment** to demonstrate backend fundamentals, API security, database integration, and frontend–backend communication.
 
@@ -16,36 +16,39 @@ This project was developed as part of a **Backend Developer / Intern Assessment*
 
 ## 🌐 Live Application
 
-- **Frontend (Vercel):**  
-  👉 https://user-management-system-deployed-44ge-40h0i3bwr.vercel.app
+* **Frontend (Vercel):**
+  👉 [https://user-management-system-deployed-44ge-40h0i3bwr.vercel.app](https://user-management-system-deployed-44ge-40h0i3bwr.vercel.app)
 
-- **Backend API (Render):**  
-  👉 https://user-management-system-backend-cijx.onrender.com
+* **Backend API (Render):**
+  👉 [https://user-management-system-backend-cijx.onrender.com](https://user-management-system-backend-cijx.onrender.com)
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Backend
-- **Node.js** – runtime environment
-- **Express.js** – REST API framework
-- **PostgreSQL (Neon)** – cloud database
-- **JWT (JSON Web Tokens)** – authentication & authorization
-- **bcrypt** – password hashing
-- **pg** – PostgreSQL client
+
+* **Node.js** – runtime environment
+* **Express.js** – REST API framework
+* **PostgreSQL (Neon)** – cloud database
+* **JWT (JSON Web Tokens)** – authentication & authorization
+* **bcrypt** – password hashing
+* **pg** – PostgreSQL client
 
 ### Frontend
-- **React** – UI library
-- **React Router DOM** – client-side routing
-- **Axios** – API communication
-- **jwt-decode** – decoding JWT payload
+
+* **React** – UI library
+* **React Router DOM** – client-side routing
+* **Axios** – API communication
+* **jwt-decode** – decoding JWT payload
 
 ### Tools & Platforms
-- **Postman** – API testing
-- **Render** – backend deployment
-- **Vercel** – frontend deployment
-- **Neon** – managed PostgreSQL hosting
-- **Git & GitHub** – version control
+
+* **Postman** – API testing
+* **Render** – backend deployment
+* **Vercel** – frontend deployment
+* **Neon** – managed PostgreSQL hosting
+* **Git & GitHub** – version control
 
 ---
 
@@ -56,7 +59,7 @@ This project was developed as part of a **Backend Developer / Intern Assessment*
 ```bash
 cd backend
 npm install
-````
+```
 
 Create a `.env` file inside the **backend** directory:
 
@@ -131,7 +134,7 @@ http://localhost:3000
 
    * Build Command: `npm install`
    * Start Command: `node src/server.js`
-5. Add environment variables in Render dashboard
+5. Add environment variables in the Render dashboard
 6. Deploy the service
 
 Backend URL:
@@ -292,6 +295,29 @@ Response:
 
 ---
 
+## 📮 Postman Collection
+
+A Postman collection is included for easy API testing.
+
+**Location:**
+
+```
+/postman/User-Management-System.postman_collection.json
+```
+
+**How to use:**
+
+1. Open Postman
+2. Click **Import**
+3. Select the collection JSON file from the `/postman` folder
+4. Set environment variable:
+
+   * `baseUrl` → Backend API URL
+5. Login request automatically stores the JWT token
+6. Use protected user and admin APIs directly
+
+---
+
 ## 👤 Admin Credentials (Demo)
 
 ```
@@ -300,4 +326,4 @@ Password: test@123
 Role: admin
 ```
 
-````
+---
